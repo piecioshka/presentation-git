@@ -12,11 +12,18 @@
 \usepackage[utf8x]{inputenc}
 \usepackage{hyperref}
 \usepackage{color}
+\usepackage{xcolor}
+\usepackage{framed}
 \usepackage{listings}
+\lstset{
+  basicstyle=\ttfamily\tiny,
+  frame=none
+}
 \usepackage{pgfpages}
 \pgfpagesuselayout{resize to}[physical paper width=8in, physical paper height=6in]
+\setbeamertemplate{footline}[page number]
 
-\title[Git]{Git - system kontroli wersji}
+\title[GIT]{GIT - system kontroli wersji}
 \author{Piotr Kowalski}
 \institute{Wyższa Szkoła Informatyki Stosowanej i Zarządzania}
 \date{24-05-2013}
@@ -24,30 +31,6 @@
 % ------------------------------------------------------------------------------
 
 \begin{document}
-\lstdefinestyle{customc}{
-  belowcaptionskip=1\baselineskip,
-  breaklines=true,
-  frame=L,
-  xleftmargin=\parindent,
-  language=C,
-  showstringspaces=false,
-  basicstyle=\footnotesize\ttfamily,
-  keywordstyle=\bfseries\color{green!40!black},
-  commentstyle=\itshape\color{purple!40!black},
-  identifierstyle=\color{blue},
-  stringstyle=\color{orange},
-}
-
-\lstdefinestyle{customasm}{
-  belowcaptionskip=1\baselineskip,
-  frame=L,
-  xleftmargin=\parindent,
-  language=[x86masm]Assembler,
-  basicstyle=\footnotesize\ttfamily,
-  commentstyle=\itshape\color{purple!40!black},
-}
-
-\lstset{escapechar=@,style=customc}
 	
 % --------------------------------------
 
@@ -62,7 +45,7 @@
 \begin{frame}{Wprowadzenie}
 \begin{itemize}
   \item Co to jest system kontroli wersji?
-  \item Dlaczego \texttt{git} jest zdobył serca programistów?
+  \item Dlaczego \texttt{GIT} zdobył serca inżynierów?
 \end{itemize}
 \vskip 1cm
 \begin{block}{System kontroli wersji}
@@ -89,7 +72,7 @@ Oprogramowanie służące do śledzenia zmian głównie w kodzie źródłowym or
   \item Bazaar
   \item Codeville
   \item Darcs
-  \item Git
+  \item \texttt{GIT}
   \item GNU Arch
   \item Mercurial
   \item Monotone
@@ -110,11 +93,17 @@ Oprogramowanie służące do śledzenia zmian głównie w kodzie źródłowym or
 \end{itemize}
 \end{frame}
 
+\begin{frame}{Informacje ogólne}
+\begin{block}{GIT}
+Rozproszony system kontroli wersji. Stworzył go Linus Torvalds jako narzędzie wspomagające rozwój jądra Linux. \texttt{GIT} stanowi wolne oprogramowanie i został opublikowany na licencji GNU GPL w wersji 2.
+\end{block}
+\end{frame}
+
 \begin{frame}{Historia}
 \begin{itemize}
-	\item Prace nad Gitem rozpoczęły się po tym, jak BitKeeper, używany wtedy do rozwoju Linuksa, przestał być darmowy dla projektów o otwartym kodzie źródłowym. 
+	\item Prace nad \texttt{GIT}em rozpoczęły się po tym, jak BitKeeper, używany wtedy do rozwoju Linuksa, przestał być darmowy dla projektów o otwartym kodzie źródłowym. 
 \vskip 1cm
-	\item Prace nad Gitem rozpoczęły się 3 kwietnia 2005 roku, projekt został ogłoszony 6 kwietnia, 7 kwietnia Git obsługiwał kontrolę wersji swojego własnego kodu, 18 kwietnia pierwszy raz wykonano łączenie kilku gałęzi kodu, 27 kwietnia Git został przetestowany pod względem szybkości z wynikiem 6,7 łat na sekundę, a 16 czerwca Linux 2.6.12 był hostowany przez Gita.
+	\item Prace nad \texttt{GIT}em rozpoczęły się 3 kwietnia 2005 roku, projekt został ogłoszony 6 kwietnia, 7 kwietnia \texttt{GIT} obsługiwał kontrolę wersji swojego własnego kodu, 18 kwietnia pierwszy raz wykonano łączenie kilku gałęzi kodu, 27 kwietnia \texttt{GIT} został przetestowany pod względem szybkości z wynikiem 6,7 łat na sekundę, a 16 czerwca Linux 2.6.12 był hostowany przez \texttt{GIT}a.
 \end{itemize}
 \end{frame}
 
@@ -125,18 +114,33 @@ Torvalds szukał rozproszonego systemu kontroli wersji, który mógłby być uż
 	\item System powinien być rozproszony.
 	\item System powinien być chroniony przed błędami w repozytorium (przypadkowymi, jak awaria twardego dysku, jak i złośliwymi, wprowadzonymi przez kogoś).
 	\item System powinien być szybki.
-	\item Pierwsze dwa punkty wyeliminowały wszystko prócz Monotone'a, a czwarty punkt wyeliminował wszystko, więc Torvalds postanowił napisać własny system kontroli wersji.
 \end{itemize}
-\end{frame}
-
-\begin{frame}{Cele}
+Pierwsze dwa punkty wyeliminowały wszystko prócz Monotone'a, a czwarty punkt wyeliminował wszystko, więc Torvalds postanowił napisać własny system kontroli wersji.
 \end{frame}
 
 % --------------------------------------
 
 \section{Składowe}
 
+\begin{frame}{Rewizja}
+Do wprowadzenia zmian w projekcie służy specjalna \textbf{operacja zatwierdzania} \textit{(ang. commit)}. Nie jest ona nigdy wykonywana przez \texttt{GIT} automatycznie. Jeśli uznamy, że bieżacy stan plików lub folderów jest istotny, należy samodzielnie wykonać operację zatwierdzania.
+
+\vskip 0.5cm
+Operację zatwierdzania możemy w pewnym uproszczeniu traktować jako zapisanie bieżącego stanu wszystkich plików i folderów 
+projektu w danej chwili.
+
+\vskip 0.5cm
+Wykonanie operacji zatwierdzania powoduje zapisanie \textbf{rewizji} \textit{(ang. commit, revision)}.
+\end{frame}
+
 \begin{frame}{Branch}
+\end{frame}
+
+\begin{frame}{Branch}
+	\begin{figure}
+	\includegraphics[width=\textwidth]{branches.png}
+	\caption{\label{Branches}Lista gałęźi i rewizji}
+	\end{figure}
 \end{frame}
 
 \begin{frame}{Tag}
@@ -144,81 +148,143 @@ Torvalds szukał rozproszonego systemu kontroli wersji, który mógłby być uż
 
 % --------------------------------------
 
-\section{Git w życiu codziennym}
+\section{GIT w życiu codziennym}
 
 \subsection{GitHub}
 
 \begin{frame}{GitHub - rejestracja}
 	\begin{figure}
 	\includegraphics[width=\textwidth]{sign-up.png}
-	\caption{\label{fig:sign-up}Rejestracja konta}
+	\caption{\label{fig:sign-up}Formularz rejestracji konta}
 	\end{figure}
 \end{frame}
 
 \begin{frame}{GitHub - logowanie}
 	\begin{figure}
 	\includegraphics[width=\textwidth]{sign-in.png}
-	\caption{\label{fig:sign-in}Logowanie użytkownika}
+	\caption{\label{fig:sign-in}Formularz logowania użytkownika}
 	\end{figure}
 \end{frame}
 
 \begin{frame}{GitHub - tworzenie nowego repozytorium}
 	\begin{figure}
 	\includegraphics[width=\textwidth]{create-repo-link.png}
-	\caption{\label{fig:create-repo-link}Link do tworzenia nowego repozytorium}
+	\caption{\label{fig:create-repo-link}Link do utworzenia nowego repozytorium}
 	\end{figure}
 \end{frame}
 
 \begin{frame}{GitHub - nowe repozytorium}
 	\begin{figure}
 	\includegraphics[width=\textwidth]{new-repo.png}
-	\caption{\label{fig:new-repo}Nowe repozytorium}
+	\caption{\label{fig:new-repo}Ustal nazwę dla nowego repozytorium}
 	\end{figure}
 \end{frame}
 
 \begin{frame}{GitHub - nowe puste repozytorium}
 	\begin{figure}
 	\includegraphics[width=\textwidth]{new-repo-settings.png}
-	\caption{\label{fig:new-repo-settings}Ustawienia repozytorium}
+	\caption{\label{fig:new-repo-settings}Początkowe ustawienia repozytorium}
 	\end{figure}
 \end{frame}
 
-\begin{frame}{Pierwszy projekt}
+\begin{framed}
+\begin{lstlisting}[frame=none, caption=Pierwszy projekt]
+$ mkdir test && cd test
+$ touch README.md
+$ git init
+$ git add README.md
+$ git commit -m "Pierwszy commit"
+$ git remote add origin git@github.com:piecioshka/test.git
+$ git push -u origin master
+\end{lstlisting}
+\end{framed}
 
-
-	
-	\begin{lstlisting}[frame=single]
-	    struct listNode {
-	    dataType data;
-	    listNode *next;
-	    };
-		
-	\it \$ mkdir test
-	\it \$ touch README.md
-	\it \$ git init
-	\it \$ git add README.md
-	\it \$ git commit -m "first commit"
-	\it \$ git remote add origin git@github.com:piecioshka/test.git
-	\it \$ git push -u origin master
-	    \end{lstlisting}
+\begin{frame}{GitHub - projekt}
+	\begin{figure}
+	\includegraphics[width=\textwidth]{project.png}
+	\caption{\label{fig:project}Projekt}
+	\end{figure}
 \end{frame}
 
-\begin{frame}{Praca lokalna}
-\end{frame}
+\begin{framed}
+\begin{lstlisting}[frame=none, caption=Praca lokalna]
+$ mkdir test && cd test
+$ touch README.md
+$ git init
+$ git add README.md
+$ git commit -m "Pierwszy commit"
+\end{lstlisting}
+\end{framed}
 
-\begin{frame}{Praca zdalna}
-\end{frame}
+\begin{framed}
+\begin{lstlisting}[frame=none, caption=Praca zdalna]
+$ git remote add origin git@github.com:piecioshka/test.git
+$ git push -u origin master
+\end{lstlisting}
+\end{framed}
+
+\begin{framed}
+\begin{lstlisting}[frame=none, caption=Najpopularniejsze polecenia]
+$ git add
+$ git status
+$ git log
+$ git branch
+$ git checkout
+$ git diff
+$ git pull
+$ git push
+$ git reset
+$ git tag
+$ git blame
+$ git summary
+$ git ignore
+\end{lstlisting}
+\end{framed}
 
 % --------------------------------------
 
 \section{Podsumowanie}
 
 \begin{frame}{Podsumowanie}
+\texttt{GIT} jest:
+\begin{itemize}
+  \item wszechstronny i uniwersalny
+  \item rozproszyny
+  \item przenośny
+  \item multiplatformowy
+  \item wygodny
+  \item szybki
+  \item bezpieczny
+\end{itemize}
+\vskip 1cm
+Czego więcej potrzeba?	
 \end{frame}
 
-\begin{frame}{Linki}
+% --------------------------------------
+
+\section{Wnioski}
+
+\begin{frame}{Wnioski}
+\begin{enumerate}
+  \item Jak się na to zapatrujecie?
+  \item Czy jest sens, używania systemu kontroli wersji, podczas działań w pojedynkę?
+\end{enumerate}
+\end{frame}
+
+% --------------------------------------
+
+\section{Linki}
+
+\begin{frame}{Przydatne adresy WWW}
 \begin{itemize}
+  \item \url{http://help.github.com/}
+  \item \url{http://github.com/git/git}
   \item \url{http://git-scm.com/book/pl/Pierwsze-kroki-Wprowadzenie-do-kontroli-wersji}
+  \item \url{https://bitbucket.org/}
+\end{itemize}
+\vskip 1cm
+Źródła do tej prezentacji:
+\begin{itemize}
   \item \url{https://github.com/piecioshka/git-presentation}
 \end{itemize}
 \end{frame}
