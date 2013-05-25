@@ -12,6 +12,7 @@
 \usepackage[utf8x]{inputenc}
 \usepackage{hyperref}
 \usepackage{color}
+\usepackage{listings}
 \usepackage{pgfpages}
 \pgfpagesuselayout{resize to}[physical paper width=8in, physical paper height=6in]
 
@@ -23,6 +24,30 @@
 % ------------------------------------------------------------------------------
 
 \begin{document}
+\lstdefinestyle{customc}{
+  belowcaptionskip=1\baselineskip,
+  breaklines=true,
+  frame=L,
+  xleftmargin=\parindent,
+  language=C,
+  showstringspaces=false,
+  basicstyle=\footnotesize\ttfamily,
+  keywordstyle=\bfseries\color{green!40!black},
+  commentstyle=\itshape\color{purple!40!black},
+  identifierstyle=\color{blue},
+  stringstyle=\color{orange},
+}
+
+\lstdefinestyle{customasm}{
+  belowcaptionskip=1\baselineskip,
+  frame=L,
+  xleftmargin=\parindent,
+  language=[x86masm]Assembler,
+  basicstyle=\footnotesize\ttfamily,
+  commentstyle=\itshape\color{purple!40!black},
+}
+
+\lstset{escapechar=@,style=customc}
 	
 % --------------------------------------
 
@@ -86,6 +111,22 @@ Oprogramowanie służące do śledzenia zmian głównie w kodzie źródłowym or
 \end{frame}
 
 \begin{frame}{Historia}
+\begin{itemize}
+	\item Prace nad Gitem rozpoczęły się po tym, jak BitKeeper, używany wtedy do rozwoju Linuksa, przestał być darmowy dla projektów o otwartym kodzie źródłowym. 
+\vskip 1cm
+	\item Prace nad Gitem rozpoczęły się 3 kwietnia 2005 roku, projekt został ogłoszony 6 kwietnia, 7 kwietnia Git obsługiwał kontrolę wersji swojego własnego kodu, 18 kwietnia pierwszy raz wykonano łączenie kilku gałęzi kodu, 27 kwietnia Git został przetestowany pod względem szybkości z wynikiem 6,7 łat na sekundę, a 16 czerwca Linux 2.6.12 był hostowany przez Gita.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Założenia}
+Torvalds szukał rozproszonego systemu kontroli wersji, który mógłby być użyty zamiast BitKeepera, głównymi kryteriami wyboru były:
+\begin{itemize}
+	\item Wziąć przykład z CVS, czego nie robić.
+	\item System powinien być rozproszony.
+	\item System powinien być chroniony przed błędami w repozytorium (przypadkowymi, jak awaria twardego dysku, jak i złośliwymi, wprowadzonymi przez kogoś).
+	\item System powinien być szybki.
+	\item Pierwsze dwa punkty wyeliminowały wszystko prócz Monotone'a, a czwarty punkt wyeliminował wszystko, więc Torvalds postanowił napisać własny system kontroli wersji.
+\end{itemize}
 \end{frame}
 
 \begin{frame}{Cele}
@@ -104,6 +145,63 @@ Oprogramowanie służące do śledzenia zmian głównie w kodzie źródłowym or
 % --------------------------------------
 
 \section{Git w życiu codziennym}
+
+\subsection{GitHub}
+
+\begin{frame}{GitHub - rejestracja}
+	\begin{figure}
+	\includegraphics[width=\textwidth]{sign-up.png}
+	\caption{\label{fig:sign-up}Rejestracja konta}
+	\end{figure}
+\end{frame}
+
+\begin{frame}{GitHub - logowanie}
+	\begin{figure}
+	\includegraphics[width=\textwidth]{sign-in.png}
+	\caption{\label{fig:sign-in}Logowanie użytkownika}
+	\end{figure}
+\end{frame}
+
+\begin{frame}{GitHub - tworzenie nowego repozytorium}
+	\begin{figure}
+	\includegraphics[width=\textwidth]{create-repo-link.png}
+	\caption{\label{fig:create-repo-link}Link do tworzenia nowego repozytorium}
+	\end{figure}
+\end{frame}
+
+\begin{frame}{GitHub - nowe repozytorium}
+	\begin{figure}
+	\includegraphics[width=\textwidth]{new-repo.png}
+	\caption{\label{fig:new-repo}Nowe repozytorium}
+	\end{figure}
+\end{frame}
+
+\begin{frame}{GitHub - nowe puste repozytorium}
+	\begin{figure}
+	\includegraphics[width=\textwidth]{new-repo-settings.png}
+	\caption{\label{fig:new-repo-settings}Ustawienia repozytorium}
+	\end{figure}
+\end{frame}
+
+\begin{frame}{Pierwszy projekt}
+
+
+	
+	\begin{lstlisting}[frame=single]
+	    struct listNode {
+	    dataType data;
+	    listNode *next;
+	    };
+		
+	\it \$ mkdir test
+	\it \$ touch README.md
+	\it \$ git init
+	\it \$ git add README.md
+	\it \$ git commit -m "first commit"
+	\it \$ git remote add origin git@github.com:piecioshka/test.git
+	\it \$ git push -u origin master
+	    \end{lstlisting}
+\end{frame}
 
 \begin{frame}{Praca lokalna}
 \end{frame}
