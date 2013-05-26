@@ -12,7 +12,7 @@
 \usepackage[utf8x]{inputenc}
 \usepackage{hyperref}
 \usepackage{color}
-\usepackage{xcolor}
+\usepackage{alltt}
 \usepackage{framed}
 \usepackage{listings}
 \lstset{
@@ -26,7 +26,7 @@
 \title[GIT]{GIT - system kontroli wersji}
 \author{Piotr Kowalski}
 \institute{Wyższa Szkoła Informatyki Stosowanej i Zarządzania}
-\date{24-05-2013}
+\date{\today}
 
 % ------------------------------------------------------------------------------
 
@@ -134,16 +134,77 @@ Wykonanie operacji zatwierdzania powoduje zapisanie \textbf{rewizji} \textit{(an
 \end{frame}
 
 \begin{frame}{Branch}
+Gałąź \textit{(ang. branch)} jest to inna ścieżka dla rewizji.
+Domyślna gałąź to branch \textbf{master}.
 \end{frame}
 
-\begin{frame}{Branch}
-	\begin{figure}
-	\includegraphics[width=\textwidth]{branches.png}
-	\caption{\label{Branches}Lista gałęźi i rewizji}
-	\end{figure}
+\begin{frame}{Branch - local}
+\begin{block}{Stworzenie nowego oraz przełączenie się na niego}
+\$ git checkout -b simple-feature
+\begin{alltt}
+Switched to a new branch 'simple-feature'
+\end{alltt}
+\end{block}
+\begin{block}{Wypchnięcie brancha na serwer}
+\$ git push origin simple-feature
+\begin{alltt}
+Total 0 (delta 0), reused 0 (delta 0) \\
+To git@github.com:piecioshka/test.git \\
+ * [new branch]      simple-feature -> simple-feature
+\end{alltt}
+\end{block}
+\end{frame}
+
+\begin{frame}{Branch - remote}
+\begin{block}{Wyświetlenie wszystkich gałęzi projektu (local \& remote)}
+\$ git branch -la
+\begin{alltt}
+  master \\
+* simple-feature \\
+  remotes/origin/master \\
+  remotes/origin/simple-feature
+\end{alltt}
+\end{block}
+\begin{block}{Usunięcie brancha na serwerze}
+\$ git push origin :simple-feature
+\begin{alltt}
+To git@github.com:piecioshka/test.git \\
+ - [deleted]         simple-feature
+\end{alltt}
+\end{block}
 \end{frame}
 
 \begin{frame}{Tag}
+Znacznik \textit{(ang. tag)} jest to rewizja która jest specjalnie zapisana w repozytorium.
+Rewizja ta zostaje oznakowana specjnalnym komentarzem, aby w przyszłości szybciej dotrzeć to odpowiedniego etapu projektu.
+
+Przykład poprawnie stworzonych znaczników:
+\begin{itemize}
+  \item \url{https://github.com/adobe/brackets/tags}
+\end{itemize}
+\vskip 1cm
+\begin{block}{Wyświetlenie wszystkich tagów projektu}
+\$ git tags -l
+\end{block}
+\begin{block}{Wypchnięcie tagów na serwer}
+\$ git push --tags
+\end{block}
+\end{frame}
+
+\begin{frame}{Wyświetlanie rewizji}
+\begin{block}{Wyświetlenie rewizji w sposób czytelny}
+\begin{alltt}
+\$ git log --graph --pretty=oneline
+\$ gitk
+\end{alltt}
+\end{block}
+\end{frame}
+
+\begin{frame}{Przykład projektu}
+	\begin{figure}
+	\includegraphics[width=\textwidth]{revisions_and_branches_and_tags.png}
+	\caption{\label{Branches}Rewizje, branche, tagi}
+	\end{figure}
 \end{frame}
 
 % --------------------------------------
@@ -255,6 +316,7 @@ $ git ignore
   \item wygodny
   \item szybki
   \item bezpieczny
+  \item darmowy
 \end{itemize}
 \vskip 1cm
 Czego więcej potrzeba?	
@@ -286,6 +348,18 @@ Czego więcej potrzeba?
 Źródła do tej prezentacji:
 \begin{itemize}
   \item \url{https://github.com/piecioshka/git-presentation}
+
+\end{itemize}
+\end{frame}
+
+% --------------------------------------
+
+\section{Autor}
+
+\begin{frame}{Autor}
+\begin{itemize}
+  \item GitHub: piecioshka
+  \item Twitter: @piecioshka
 \end{itemize}
 \end{frame}
 
