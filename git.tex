@@ -133,9 +133,25 @@ projektu w danej chwili.
 Wykonanie operacji zatwierdzania powoduje zapisanie \textbf{rewizji} \textit{(ang. commit, revision)}.
 \end{frame}
 
+\begin{frame}{Rewizja - dalej}
+\begin{block}{Utworzenie rewizji}
+\$ git add plik.txt \\
+\$ git commit -m "dodajemy plik.txt"
+\begin{alltt}
+[master 66601e8] dodajemy plik.txt \\ 
+ 1 file changed, 0 insertions(+), 0 deletions(-) \\
+ create mode 100644 plik.txt
+\end{alltt}
+\end{block}
+\end{frame}
+
 \begin{frame}{Branch}
 Gałąź \textit{(ang. branch)} jest to inna ścieżka dla rewizji.
 Domyślna gałąź to branch \textbf{master}.
+
+Branche nie są ze sobą połączone, chyba, że zostaną zmergowane.
+
+Stworzona rewizja istnieje tylko w jednym branchu, chyba, że zrobimy cherry-picka.
 \end{frame}
 
 \begin{frame}{Branch - local}
@@ -143,6 +159,12 @@ Domyślna gałąź to branch \textbf{master}.
 \$ git checkout -b simple-feature
 \begin{alltt}
 Switched to a new branch 'simple-feature'
+\end{alltt}
+\end{block}
+\begin{block}{Usunięcie brancha lokalnie}
+\$ git branch -D simple-feature
+\begin{alltt}
+Deleted branch simple-feature (was 2b325c2).
 \end{alltt}
 \end{block}
 \begin{block}{Wypchnięcie brancha na serwer}
@@ -165,7 +187,7 @@ To git@github.com:piecioshka/test.git \\
   remotes/origin/simple-feature
 \end{alltt}
 \end{block}
-\begin{block}{Usunięcie brancha na serwerze}
+\begin{block}{Usunięcie brancha z serwera}
 \$ git push origin :simple-feature
 \begin{alltt}
 To git@github.com:piecioshka/test.git \\
@@ -177,12 +199,18 @@ To git@github.com:piecioshka/test.git \\
 \begin{frame}{Tag}
 Znacznik \textit{(ang. tag)} jest to rewizja która jest specjalnie zapisana w repozytorium.
 Rewizja ta zostaje oznakowana specjnalnym komentarzem, aby w przyszłości szybciej dotrzeć to odpowiedniego etapu projektu.
-
+\vskip 0.5cm
 Przykład poprawnie stworzonych znaczników:
 \begin{itemize}
   \item \url{https://github.com/adobe/brackets/tags}
 \end{itemize}
-\vskip 1cm
+\end{frame}
+
+\begin{frame}{Tag - dalej}
+\begin{block}{Wypchnięcie tagów na serwer}
+\$ git tag v1.0 -m "new feature"
+\end{block}
+\vskip 0.5cm
 \begin{block}{Wyświetlenie wszystkich tagów projektu}
 \$ git tags -l
 \end{block}
@@ -194,7 +222,7 @@ Przykład poprawnie stworzonych znaczników:
 \begin{frame}{Wyświetlanie rewizji}
 \begin{block}{Wyświetlenie rewizji w sposób czytelny}
 \begin{alltt}
-\$ git log --graph --pretty=oneline
+\$ git log --graph --pretty=oneline \\
 \$ gitk
 \end{alltt}
 \end{block}
