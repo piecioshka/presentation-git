@@ -1,5 +1,4 @@
-git-presentation
-================
+# presentation-git
 
-Simple presentation of GIT - system of version control
+Short presentation of GIT.
 
