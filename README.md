@@ -1,4 +1,4 @@
-# presentation-git
+# presentation-git-overview
 
-Short presentation of GIT.
+Short presentation of Git.
 
