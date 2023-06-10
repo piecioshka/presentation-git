@@ -31,7 +31,7 @@
 % ------------------------------------------------------------------------------
 
 \begin{document}
-	
+
 % --------------------------------------
 
 \begin{frame}
@@ -101,19 +101,19 @@ Rozproszony system kontroli wersji. Stworzył go Linus Torvalds jako narzędzie 
 
 \begin{frame}{Historia}
 \begin{itemize}
-	\item Prace nad \texttt{GIT}em rozpoczęły się po tym, jak BitKeeper, używany wtedy do rozwoju Linuksa, przestał być darmowy dla projektów o otwartym kodzie źródłowym. 
+  \item Prace nad \texttt{GIT}em rozpoczęły się po tym, jak BitKeeper, używany wtedy do rozwoju Linuksa, przestał być darmowy dla projektów o otwartym kodzie źródłowym. 
 \vskip 1cm
-	\item Prace nad \texttt{GIT}em rozpoczęły się 3 kwietnia 2005 roku, projekt został ogłoszony 6 kwietnia, 7 kwietnia \texttt{GIT} obsługiwał kontrolę wersji swojego własnego kodu, 18 kwietnia pierwszy raz wykonano łączenie kilku gałęzi kodu, 27 kwietnia \texttt{GIT} został przetestowany pod względem szybkości z wynikiem 6,7 łat na sekundę, a 16 czerwca Linux 2.6.12 był hostowany przez \texttt{GIT}a.
+  \item Prace nad \texttt{GIT}em rozpoczęły się 3 kwietnia 2005 roku, projekt został ogłoszony 6 kwietnia, 7 kwietnia \texttt{GIT} obsługiwał kontrolę wersji swojego własnego kodu, 18 kwietnia pierwszy raz wykonano łączenie kilku gałęzi kodu, 27 kwietnia \texttt{GIT} został przetestowany pod względem szybkości z wynikiem 6,7 łat na sekundę, a 16 czerwca Linux 2.6.12 był hostowany przez \texttt{GIT}a.
 \end{itemize}
 \end{frame}
 
 \begin{frame}{Założenia}
 Torvalds szukał rozproszonego systemu kontroli wersji, który mógłby być użyty zamiast BitKeepera, głównymi kryteriami wyboru były:
 \begin{itemize}
-	\item Wziąć przykład z CVS, czego nie robić.
-	\item System powinien być rozproszony.
-	\item System powinien być chroniony przed błędami w repozytorium (przypadkowymi, jak awaria twardego dysku, jak i złośliwymi, wprowadzonymi przez kogoś).
-	\item System powinien być szybki.
+  \item Wziąć przykład z CVS, czego nie robić.
+  \item System powinien być rozproszony.
+  \item System powinien być chroniony przed błędami w repozytorium (przypadkowymi, jak awaria twardego dysku, jak i złośliwymi, wprowadzonymi przez kogoś).
+  \item System powinien być szybki.
 \end{itemize}
 Pierwsze dwa punkty wyeliminowały wszystko prócz Monotone'a, a czwarty punkt wyeliminował wszystko, więc Torvalds postanowił napisać własny system kontroli wersji.
 \end{frame}
@@ -136,9 +136,9 @@ Wykonanie operacji zatwierdzania powoduje zapisanie \textbf{rewizji} \textit{(an
 \begin{frame}{Rewizja - dalej}
 \begin{block}{Utworzenie rewizji}
 \$ git add plik.txt \\
-\$ git commit -m "dodajemy plik.txt"
+\$ git commit -m "Dodaj plik.txt"
 \begin{alltt}
-[master 66601e8] dodajemy plik.txt \\ 
+[master 66601e8] Dodaj plik.txt \\ 
  1 file changed, 0 insertions(+), 0 deletions(-) \\
  create mode 100644 plik.txt
 \end{alltt}
@@ -147,11 +147,14 @@ Wykonanie operacji zatwierdzania powoduje zapisanie \textbf{rewizji} \textit{(an
 
 \begin{frame}{Branch}
 Gałąź \textit{(ang. branch)} jest to inna ścieżka dla rewizji.
-Domyślna gałąź to branch \textbf{master}.
 
-Branche nie są ze sobą połączone, chyba, że zostaną zmergowane.
+Nazwa domyślnej gałązi to \textbf{master}.
 
-Stworzona rewizja istnieje tylko w jednym branchu, chyba, że zrobimy cherry-picka.
+Branche nie są ze sobą połączone - tj. można pracować na nich niezależnie.
+
+Stworzona rewizja istnieje tylko w aktualny branchu.
+Jeśli chcemy skopiować pojedynczą rewizję, to możemy użyć polecenia \textbf{git cherry-pick},
+natomiast, będzie to kopia zmian, więc \textbf{commit hash} będzie inny.
 \end{frame}
 
 \begin{frame}{Branch - local}
@@ -207,7 +210,7 @@ Przykład poprawnie stworzonych znaczników:
 \end{frame}
 
 \begin{frame}{Tag - dalej}
-\begin{block}{Stworzenie nowego znacznika}
+\begin{block}{Stworzenie nowego taga}
 \$ git tag v1.0 -m "new feature"
 \end{block}
 \vskip 0.5cm
@@ -223,16 +226,21 @@ Przykład poprawnie stworzonych znaczników:
 \begin{block}{Wyświetlenie rewizji w sposób czytelny}
 \begin{alltt}
 \$ git log --graph --pretty=oneline \\
-\$ gitk
+\end{alltt}
+\end{block}
+
+\begin{block}{Wyświetlenie rewizji w sposób czytelny}
+\begin{alltt}
+    \$ gitk
 \end{alltt}
 \end{block}
 \end{frame}
 
 \begin{frame}{Przykład projektu}
-	\begin{figure}
-	\includegraphics[width=\textwidth]{photos/revisions_and_branches_and_tags.png}
-	\caption{\label{Branches}Rewizje, branche, tagi}
-	\end{figure}
+  \begin{figure}
+  \includegraphics[width=\textwidth]{photos/revisions_and_branches_and_tags.png}
+  \caption{\label{Branches}Rewizje, branche, tagi}
+  \end{figure}
 \end{frame}
 
 % --------------------------------------
@@ -242,38 +250,38 @@ Przykład poprawnie stworzonych znaczników:
 \subsection{GitHub}
 
 \begin{frame}{GitHub - rejestracja}
-	\begin{figure}
-	\includegraphics[width=\textwidth]{photos/sign-up.png}
-	\caption{\label{fig:sign-up}Formularz rejestracji konta}
-	\end{figure}
+  \begin{figure}
+  \includegraphics[width=\textwidth]{photos/sign-up.png}
+  \caption{\label{fig:sign-up}Formularz rejestracji konta}
+  \end{figure}
 \end{frame}
 
 \begin{frame}{GitHub - logowanie}
-	\begin{figure}
-	\includegraphics[width=\textwidth]{photos/sign-in.png}
-	\caption{\label{fig:sign-in}Formularz logowania użytkownika}
-	\end{figure}
+  \begin{figure}
+  \includegraphics[width=\textwidth]{photos/sign-in.png}
+  \caption{\label{fig:sign-in}Formularz logowania użytkownika}
+  \end{figure}
 \end{frame}
 
 \begin{frame}{GitHub - tworzenie nowego repozytorium}
-	\begin{figure}
-	\includegraphics[width=\textwidth]{photos/create-repo-link.png}
-	\caption{\label{fig:create-repo-link}Link do utworzenia nowego repozytorium}
-	\end{figure}
+  \begin{figure}
+  \includegraphics[width=\textwidth]{photos/create-repo-link.png}
+  \caption{\label{fig:create-repo-link}Link do utworzenia nowego repozytorium}
+  \end{figure}
 \end{frame}
 
 \begin{frame}{GitHub - nowe repozytorium}
-	\begin{figure}
-	\includegraphics[width=\textwidth]{photos/new-repo.png}
-	\caption{\label{fig:new-repo}Ustal nazwę dla nowego repozytorium}
-	\end{figure}
+  \begin{figure}
+  \includegraphics[width=\textwidth]{photos/new-repo.png}
+  \caption{\label{fig:new-repo}Ustal nazwę dla nowego repozytorium}
+  \end{figure}
 \end{frame}
 
 \begin{frame}{GitHub - nowe puste repozytorium}
-	\begin{figure}
-	\includegraphics[width=\textwidth]{photos/new-repo-settings.png}
-	\caption{\label{fig:new-repo-settings}Początkowe ustawienia repozytorium}
-	\end{figure}
+  \begin{figure}
+  \includegraphics[width=\textwidth]{photos/new-repo-settings.png}
+  \caption{\label{fig:new-repo-settings}Początkowe ustawienia repozytorium}
+  \end{figure}
 \end{frame}
 
 \begin{framed}
@@ -289,10 +297,10 @@ $ git push -u origin master
 \end{framed}
 
 \begin{frame}{GitHub - projekt}
-	\begin{figure}
-	\includegraphics[width=\textwidth]{photos/project.png}
-	\caption{\label{fig:project}Projekt}
-	\end{figure}
+  \begin{figure}
+  \includegraphics[width=\textwidth]{photos/project.png}
+  \caption{\label{fig:project}Projekt}
+  \end{figure}
 \end{frame}
 
 \begin{framed}
@@ -347,7 +355,7 @@ $ git ignore
   \item darmowy
 \end{itemize}
 \vskip 1cm
-Czego więcej potrzeba?	
+Czego więcej potrzeba?
 \end{frame}
 
 % --------------------------------------
